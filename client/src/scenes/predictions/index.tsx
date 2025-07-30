@@ -110,7 +110,7 @@ const Predictions = (props: Props) => {
           />
           {isPredictions && (
             <Line
-              type="monotone"
+              strokeDasharray="5 5"
               dataKey="Predicted Revenue"
               stroke={palette.secondary[500]}
             />
