@@ -185,7 +185,7 @@ const Row2 = () => {
               style={{ fontSize: "10px" }}
               tickFormatter={(v) => `$${v}`}
             />
-            <ZAxis type="number" range={[20, 100]} />
+            <ZAxis type="number" />
             <Tooltip formatter={(v) => `$${v}`} />
             <Scatter
               name="Product Expense Ratio"

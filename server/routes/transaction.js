@@ -13,4 +13,26 @@ router.get("/transactions", async (req, res) => {
   }
 });
 
+router.post("/transactions", async (req, res) => {
+  try {
+    const { buyer, amount, productIds } = req.body;
+    if (
+      !buyer ||
+      !amount ||
+      !productIds ||
+      !Array.isArray(productIds) ||
+      productIds.length === 0
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Buyer, amount, and productIds are required." });
+    }
+    const transaction = new Transaction({ buyer, amount, productIds });
+    await transaction.save();
+    res.status(201).json(transaction);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;

@@ -23,8 +23,41 @@ export const api = createApi({
       query: () => "transaction/transactions/",
       providesTags: ["Transactions"],
     }),
+    addProduct: build.mutation<any, { price: string; expense: string }>({
+      query: (body) => ({
+        url: "product/products/",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Products"],
+    }),
+    addTransaction: build.mutation<
+      any,
+      { buyer: string; amount: string; productIds: string[] }
+    >({
+      query: (body) => ({
+        url: "transaction/transactions/",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Transactions"],
+    }),
+    addKpi: build.mutation<any, any>({
+      query: (body) => ({
+        url: "kpi/kpis/",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Kpis"],
+    }),
   }),
 });
 
-export const { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } =
-  api;
+export const {
+  useGetKpisQuery,
+  useGetProductsQuery,
+  useGetTransactionsQuery,
+  useAddProductMutation,
+  useAddTransactionMutation,
+  useAddKpiMutation,
+} = api;
